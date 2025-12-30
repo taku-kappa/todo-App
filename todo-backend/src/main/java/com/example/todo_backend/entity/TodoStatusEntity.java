@@ -17,8 +17,7 @@ public class TodoStatusEntity {
     @Column(nullable = false, length = 20)
     private String name;
 
-// ーー getter・setter ーー //
-
+    // ーー getter・setter ーー //
     public Long getId() {
         return id;
     }

@@ -36,9 +36,7 @@ public class TodoEntity {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-// ーー getter・setter ーー //
-
-
+    // ーー getter・setter ーー //
     public Long getId() {
         return id;
     }

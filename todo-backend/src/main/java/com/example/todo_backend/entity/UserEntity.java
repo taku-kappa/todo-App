@@ -25,8 +25,7 @@ public class UserEntity {
     @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
-// ーー getter・setter ーー //
-
+    // ーー getter・setter ーー //
     public Long getId() {
         return id;
     }
