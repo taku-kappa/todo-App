@@ -18,20 +18,31 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException {
 
-        String authHeader = request.getHeader("Authorization");
-
-        // Authorization ヘッダがない場合
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+        // CORS preflight 対応
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        String token = authHeader.substring(7);
+        // ログイン・ユーザー作成 API は JWT 不要
+        String uri = request.getRequestURI();
+        if (uri.startsWith("/api/auth") || uri.equals("/api/users")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        String authHeader = request.getHeader("Authorization");
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
 
         try {
+            String token = authHeader.substring(7);
             Long userId = JwtUtil.validateAndGetUserId(token);
 
-            // Controller で使えるように request に保存
+            // Controller で使えるように保存
             request.setAttribute("userId", userId);
 
         } catch (Exception e) {
