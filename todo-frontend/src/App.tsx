@@ -8,8 +8,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<TodoListPage />} />
-        <Route path="/todos/:id/edit" element={<TodoEditPage />} />
+        <Route path="/todos" element={<TodoListPage />} />
+        <Route path="/todos/:id" element={<TodoEditPage />} />
       </Routes>
     </BrowserRouter>
   );
