@@ -9,8 +9,8 @@ import com.example.todo_backend.repository.TodoRepository;
 import com.example.todo_backend.repository.TodoStatusRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TodoService {
@@ -28,10 +28,18 @@ public class TodoService {
 
     // Todo一覧取得
     public List<TodoResponseDto> getTodos(Long userId) {
-        return todoRepository.findByUserId(userId)
-                .stream()
-                .map(this::toResponseDto)
-                .collect(Collectors.toList());
+        List<TodoEntity> list = todoRepository.findByUserId(userId);
+        List<TodoResponseDto> todos = new ArrayList<>();
+        for (TodoEntity todo : list) {
+            todos.add(toResponseDto(todo));
+        }
+
+        return todos;
+
+//        return todoRepository.findByUserId(userId)
+//                .stream()
+//                .map(this::toResponseDto)
+//                .collect(Collectors.toList());
     }
 
     // Todo作成
