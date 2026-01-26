@@ -63,7 +63,7 @@ const TodoForm = ({ initialValue, onSubmit }: Props) => {
         </select>
       </div>
 
-      <button type="submit">保存</button>
+      <button type="submit">追加</button>
     </form>
   );
 };

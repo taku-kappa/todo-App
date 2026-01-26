@@ -20,9 +20,13 @@ const TodoListPage = () => {
   return (
     <>
       <Header user={user} />
-      <button onClick={() => (window.location.href = "/todos/new")}>
-        新規作成
-      </button>
+
+      {/*
+         <button onClick={() => (window.location.href = "/todos/new")}>
+                 新規作成
+               </button>
+      */}
+
       <TodoForm
         onSubmit={async (data) => {
           await createTodo(data);
