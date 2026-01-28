@@ -25,7 +25,7 @@ public class UserController {
         return userService.getLoginUser(userId);
     }
 
-    /* ユーザー登録
+    /* ユーザー登録に関するコード
     @PostMapping
     public UserEntity createUser(@RequestBody UserEntity user) {
         return userService.save(user);
